@@ -23,7 +23,7 @@ angular.module('kataApp')
   // private methods
   var conversions = [];
   conversions[0] = function ( value, expo ) {
-      return '';
+      return convert();
   };
   conversions[1] =
   conversions[5] = function ( value, expo ) {
@@ -35,7 +35,7 @@ angular.module('kataApp')
       while ( value-- ) {
           terms.push( [ 1, expo ] );
       }
-      return terms;
+      return convert.apply( [], terms );
   };
   conversions[4] = function ( value, expo ) { 
       return [ [ 1, expo ], [ 5, expo ] ];

@@ -70,10 +70,17 @@ describe('Service: RomanNumbers', function () {
         .toBe('I');
     expect( flattenToString( expose.conversions[1]( 1, 1 ) ) )
         .toBe('X');
+/*
     expect( flattenToString( expose.conversions[2]( 2, 0 ) ) )
         .toBe('1-0-1-0');
     expect( flattenToString( expose.conversions[3]( 3, 0 ) ) )
         .toBe('1-0-1-0-1-0');
+ */
+    expect( flattenToString( expose.conversions[2]( 2, 0 ) ) )
+        .toBe('I-I');
+    expect( flattenToString( expose.conversions[3]( 3, 0 ) ) )
+        .toBe('I-I-I');
+
     expect( flattenToString( expose.conversions[4]( 4, 0 ) ) )
         .toBe('1-0-5-0');
     expect( flattenToString( expose.conversions[5]( 5, 0 ) ) )
