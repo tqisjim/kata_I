@@ -154,4 +154,38 @@ describe('Service: RomanNumbers', function () {
     expect( RomanNumbers.toRoman( 1989 ) ).toBe( 'MCMLXXXIX' );
   });
 
+/**
+ * Parsing a Roman representation is easier.  Each Roman symbol
+ * maps directly to a numeric value.
+ */
+  it('should convert a Roman symbol to numeric value', function () {
+    var expose = RomanNumbers.expose();
+    var values = expose.romanValues();
+    expect( values.I ).toBe( 1 );
+    expect( values.V ).toBe( 5 );
+    expect( values.X ).toBe( 10 );
+    expect( values.L ).toBe( 50 );
+    expect( values.C ).toBe( 100 );
+    expect( values.D ).toBe( 500 );
+    expect( values.M ).toBe( 1000 );
+  });
+
+/**
+ * Values are slightly affected by position.  A value smaller than the 
+ * proceeding value is negated.  Eg, the 'I' in 'IX' represents a value
+ * of -1.  The leadingDecr() method performs this function in a collection
+ * context.
+ */
+  it('should negate values based on position', function () {
+    var expose = RomanNumbers.expose();
+    expect( expose.leadingDecr( 10, 0, [ 10, 50, 1, 10 ] ) )
+        .toBe( -10 );
+    expect( expose.leadingDecr( 50, 1, [ 10, 50, 1, 10 ] ) )
+        .toBe( 50 );
+    expect( expose.leadingDecr( 1, 2, [ 10, 50, 1, 10 ] ) )
+        .toBe( -1 );
+    expect( expose.leadingDecr( 10, 3, [ 10, 50, 1, 10 ] ) )
+        .toBe( 10 );
+  });
+
 });

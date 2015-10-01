@@ -83,15 +83,31 @@ angular.module('kataApp')
           .value();
   }
 
+  function romanValues () {
+      var out = {};
+      _.chain( romans )
+          .map( function ( v, i ) { return _.flatten( [ i, v ] ); })
+          .map( function ( v ) { return [
+              [ v[1], 1, v[0] ], [ v[2], 5, v[0] ] ];
+          })
+          .flatten()
+          .map( function ( v ) { return [ v[0], v[1] *Math.pow( 10, v[2] ) ]; })
+          .value()
+          .forEach( function ( v ) { out[ v[0] ] = v[1]; }) ;
+
+      return out;
+  }
+
   // used for unit testing
 
   function echoOnly () {
       echo = true;
   }
 
-  _.forEach( [ symbol, digits, convert, echoOnly ], function ( v ) { 
-      var k = v.toString().split( /[ \(]/ )[1];
-      expose[k] = v;
+  _.forEach( [ symbol, digits, convert, echoOnly, romanValues ], 
+      function ( v ) { 
+          var k = v.toString().split( /[ \(]/ )[1];
+          expose[k] = v;
   });
   expose.conversions = conversions ;
 
