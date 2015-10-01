@@ -188,4 +188,15 @@ describe('Service: RomanNumbers', function () {
         .toBe( 10 );
   });
 
+/**
+ * The public fromRoman() method determines the values of each
+ * Roman symbol, and returns the sum.
+ */
+  it('should convert a Roman Numeral to a number', function () {
+    expect( RomanNumbers.fromRoman( 'I' ) ).toBe( 1 );
+    expect( RomanNumbers.fromRoman( 'III' ) ).toBe( 3 );
+    expect( RomanNumbers.fromRoman( 'IX' ) ).toBe( 9 );
+    expect( RomanNumbers.fromRoman( 'MLXVI' ) ).toBe( 1066 );
+    expect( RomanNumbers.fromRoman( 'MCMLXXXIX' ) ).toBe( 1989 );
+  });
 });
