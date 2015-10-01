@@ -26,4 +26,32 @@ describe('Service: RomanNumbers', function () {
     expect(!!RomanNumbers).toBe(true);
   });
 
+/**
+ * Break an integer into a series of exponential terms Each exponential term 
+ * is an array consisting of a single digit and an exponential value (0-3).  
+ * The resulting elements need to map to Roman symbols:
+ * eg, [ 1, 0 ], [ 5, 0 ], [ 1, 1 ], [ 5, 1 ], etc.
+ */
+  it('should map Roman symbols', function () {
+    var expose = RomanNumbers.expose();
+    expect( expose.symbol( 1, 0 ) ).toBe('I');
+    expect( expose.symbol( 5, 0 ) ).toBe('V');
+    expect( expose.symbol( 1, 1 ) ).toBe('X');
+    expect( expose.symbol( 5, 1 ) ).toBe('L');
+    expect( expose.symbol( 1, 2 ) ).toBe('C');
+    expect( expose.symbol( 5, 2 ) ).toBe('D');
+    expect( expose.symbol( 1, 3 ) ).toBe('M');
+  });
+
+/**
+ * Roman representation is base 10, conversions can be performed on 
+ * digit-by-digit basis.
+ */
+  it('should convert a number to a series of digits', function () {
+    var expose = RomanNumbers.expose();
+    expect( expose.digits( 1849 ).join('-') ).toBe('9-4-8-1');
+    expect( expose.digits( 103 ).join('-') ).toBe('3-0-1');
+    expect( expose.digits( 9 ).join('-') ).toBe('9');
+  });
+
 });
