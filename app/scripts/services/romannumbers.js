@@ -93,13 +93,13 @@ angular.module('kataApp')
           .flatten()
           .map( function ( v ) { return [ v[0], v[1] *Math.pow( 10, v[2] ) ]; })
           .value()
-          .forEach( function ( v ) { out[ v[0] ] = v[1]; }) ;
+          .forEach( function ( v ) { out[ v[0] ] = v[1]; });
 
       return out;
   }
 
   function leadingDecr ( v, i, c ) {
-      return i === c.length -1 ? v : v < c[i +1] ? v *-1 : v ;
+      return i === c.length -1 ? v : v < c[i +1] ? v *-1 : v;
   }
 
   // used for unit testing
@@ -130,7 +130,7 @@ angular.module('kataApp')
   } ;
 
   _this.fromRoman = function ( string ) {
-      var toValue = romanValues() ;
+      var toValue = romanValues();
       return _.chain( string.split('') )
           .map( function ( c ) { return toValue[c]; })
           .map( leadingDecr )
