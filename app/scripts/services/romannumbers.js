@@ -100,11 +100,17 @@ angular.module('kataApp')
   _this.expose = function () { return expose; };
 
   _this.toRoman = function ( number ) {
-    return number.toString();
+      return _.chain( digits( number ) )
+          .map( function ( v, i ) { 
+              return convert( [ v, i ] );
+          })
+          .reverse()
+          .flatten()
+          .value().join('');
   } ;
 
   _this.fromRoman = function ( string ) {
-    parseInt( string );
+      parseInt( string );
   } ;
 
   return _this;

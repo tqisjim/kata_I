@@ -142,4 +142,16 @@ describe('Service: RomanNumbers', function () {
     expect( expose.convert( [ 9, 0 ] ).join('') ).toBe('IX');
   });
 
+/**
+ * The public toRoman() method combines the results of the convert() 
+ * method applied to each digit.
+ */
+  it('should convert a digit to its Roman equivalent', function () {
+    expect( RomanNumbers.toRoman( 1 ) ).toBe( 'I' );
+    expect( RomanNumbers.toRoman( 3 ) ).toBe( 'III' );
+    expect( RomanNumbers.toRoman( 9 ) ).toBe( 'IX' );
+    expect( RomanNumbers.toRoman( 1066 ) ).toBe( 'MLXVI' );
+    expect( RomanNumbers.toRoman( 1989 ) ).toBe( 'MCMLXXXIX' );
+  });
+
 });
