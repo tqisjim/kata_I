@@ -61,6 +61,8 @@ describe('Service: RomanNumbers', function () {
 /**
  * Terms are recursively decomposed.  Decomposition algorithms correspond
  * to every digit.
+ *
+ * The echoOnly() method is used for testing to disable the recursion.
  */
   it('should decomponse non-mapping digits', function () {
     var expose = RomanNumbers.expose();
@@ -120,6 +122,24 @@ describe('Service: RomanNumbers', function () {
         .toBe('V-I-I-I');
     expect( flattenToString( expose.conversions[9]( 9, 2 ) ) )
         .toBe('C-M');
+  });
+
+/**
+ * The convert() method either performs a symbol lookup or recurses.
+ * Ultimately, it returns the Roman representation for a single digit.
+ */
+  it('should convert a digit to its Roman equivalent', function () {
+    var expose = RomanNumbers.expose();
+    expect( expose.convert( [ 0, 1 ] ).join('') ).toBe('');
+    expect( expose.convert( [ 1, 1 ] ).join('') ).toBe('X');
+    expect( expose.convert( [ 2, 2 ] ).join('') ).toBe('CC');
+    expect( expose.convert( [ 3, 0 ] ).join('') ).toBe('III');
+    expect( expose.convert( [ 4, 1 ] ).join('') ).toBe('XL');
+    expect( expose.convert( [ 5, 2 ] ).join('') ).toBe('D');
+    expect( expose.convert( [ 6, 0 ] ).join('') ).toBe('VI');
+    expect( expose.convert( [ 7, 1 ] ).join('') ).toBe('LXX');
+    expect( expose.convert( [ 8, 2 ] ).join('') ).toBe('DCCC');
+    expect( expose.convert( [ 9, 0 ] ).join('') ).toBe('IX');
   });
 
 });
