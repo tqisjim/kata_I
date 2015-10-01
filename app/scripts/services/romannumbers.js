@@ -98,13 +98,17 @@ angular.module('kataApp')
       return out;
   }
 
+  function leadingDecr ( v, i, c ) {
+      return i === c.length -1 ? v : v < c[i +1] ? v *-1 : v ;
+  }
+
   // used for unit testing
 
   function echoOnly () {
       echo = true;
   }
 
-  _.forEach( [ symbol, digits, convert, echoOnly, romanValues ], 
+  _.forEach( [ symbol, digits, convert, echoOnly, romanValues, leadingDecr ], 
       function ( v ) { 
           var k = v.toString().split( /[ \(]/ )[1];
           expose[k] = v;
@@ -126,8 +130,13 @@ angular.module('kataApp')
   } ;
 
   _this.fromRoman = function ( string ) {
-      parseInt( string );
-  } ;
+      var toValue = romanValues() ;
+      return _.chain( string.split('') )
+          .map( function ( c ) { return toValue[c]; })
+          .map( leadingDecr )
+          .value()
+          .reduce( function( sum, n ) { return sum +n; }, 0 );
+  };
 
   return _this;
   });
