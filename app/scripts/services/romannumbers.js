@@ -21,6 +21,33 @@ angular.module('kataApp')
   var expose = {};
 
   // private methods
+  var conversions = [];
+  conversions[0] = function ( value, expo ) {
+      return '';
+  };
+  conversions[1] =
+  conversions[5] = function ( value, expo ) {
+      return symbol( value, expo ) ;
+  };
+  conversions[2] =
+  conversions[3] = function ( value, expo ) { 
+      var terms = [];
+      while ( value-- ) {
+          terms.push( [ 1, expo ] );
+      }
+      return terms;
+  };
+  conversions[4] = function ( value, expo ) { 
+      return [ [ 1, expo ], [ 5, expo ] ];
+  };
+  conversions[6] =
+  conversions[7] =
+  conversions[8] = function ( value, expo ) { 
+      return [ [ 5, expo ], [ value %5, expo ] ];
+  };
+  conversions[9] = function ( value, expo ) { 
+      return [ [ 1, expo ], [ 1, expo +1 ] ];
+  };
 
   function symbol ( value, expo ) {
       // value should either be 1 or 5
@@ -41,10 +68,21 @@ angular.module('kataApp')
       return out;
   }
 
-  _.forEach( [ symbol, digits ], function ( v ) { 
+  function convert () {
+      return _.chain( arguments )
+          .map( function ( v ) {
+              return _.flatten( [ v, conversions[ v[0] ] ] ) ;
+          })
+          .map( function ( v ) { return v[2].apply( [], v ); } )
+          .flatten()
+          .value();
+  }
+
+  _.forEach( [ symbol, digits, convert ], function ( v ) { 
       var k = v.toString().split( /[ \(]/ )[1];
       expose[k] = v;
   });
+  expose.conversions = conversions ;
 
   // public methods
 

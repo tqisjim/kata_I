@@ -11,6 +11,10 @@
  * using the public method expose().
  */
 
+function flattenToString ( a ) {
+  return _.flatten( a, true ).join('-') ;
+  }
+
 describe('Service: RomanNumbers', function () {
 
   // load the service's module
@@ -52,6 +56,38 @@ describe('Service: RomanNumbers', function () {
     expect( expose.digits( 1849 ).join('-') ).toBe('9-4-8-1');
     expect( expose.digits( 103 ).join('-') ).toBe('3-0-1');
     expect( expose.digits( 9 ).join('-') ).toBe('9');
+  });
+
+/**
+ * Terms are recursively decomposed.  Decomposition algorithms correspond
+ * to every digit.
+ */
+  it('should decomponse non-mapping digits', function () {
+    var expose = RomanNumbers.expose();
+    expect( flattenToString( expose.conversions[0]( 0, 0 ) ) )
+        .toBe('');
+    expect( flattenToString( expose.conversions[1]( 1, 0 ) ) )
+        .toBe('I');
+    expect( flattenToString( expose.conversions[1]( 1, 1 ) ) )
+        .toBe('X');
+    expect( flattenToString( expose.conversions[2]( 2, 0 ) ) )
+        .toBe('1-0-1-0');
+    expect( flattenToString( expose.conversions[3]( 3, 0 ) ) )
+        .toBe('1-0-1-0-1-0');
+    expect( flattenToString( expose.conversions[4]( 4, 0 ) ) )
+        .toBe('1-0-5-0');
+    expect( flattenToString( expose.conversions[5]( 5, 0 ) ) )
+        .toBe('V');
+    expect( flattenToString( expose.conversions[5]( 5, 2 ) ) )
+        .toBe('D');
+    expect( flattenToString( expose.conversions[6]( 6, 2 ) ) )
+        .toBe('5-2-1-2');
+    expect( flattenToString( expose.conversions[7]( 7, 1 ) ) )
+        .toBe('5-1-2-1');
+    expect( flattenToString( expose.conversions[8]( 8, 0 ) ) )
+        .toBe('5-0-3-0');
+    expect( flattenToString( expose.conversions[9]( 9, 2 ) ) )
+        .toBe('1-2-1-3');
   });
 
 });
