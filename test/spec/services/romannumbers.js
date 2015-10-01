@@ -155,8 +155,8 @@ describe('Service: RomanNumbers', function () {
   });
 
 /**
- * Parsing a Roman representation is easier.  Each Roman symbol
- * maps directly to a numeric value.
+ * Parsing a Roman representation is easier.  Each Roman symbol maps
+ * directly to a numeric value.
  */
   it('should convert a Roman symbol to numeric value', function () {
     var expose = RomanNumbers.expose();
