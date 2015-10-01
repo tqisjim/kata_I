@@ -19,10 +19,11 @@ angular.module('kataApp')
 
   var _this = {};
   var expose = {};
+  var echo = false;
 
   // private methods
   var conversions = [];
-  conversions[0] = function ( value, expo ) {
+  conversions[0] = function () {
       return convert();
   };
   conversions[1] =
@@ -69,6 +70,10 @@ angular.module('kataApp')
   }
 
   function convert () {
+      if ( echo ) {
+          return arguments;
+      }
+
       return _.chain( arguments )
           .map( function ( v ) {
               return _.flatten( [ v, conversions[ v[0] ] ] ) ;
@@ -78,7 +83,13 @@ angular.module('kataApp')
           .value();
   }
 
-  _.forEach( [ symbol, digits, convert ], function ( v ) { 
+  // used for unit testing
+
+  function echoOnly () {
+      echo = true;
+  }
+
+  _.forEach( [ symbol, digits, convert, echoOnly ], function ( v ) { 
       var k = v.toString().split( /[ \(]/ )[1];
       expose[k] = v;
   });

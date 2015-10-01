@@ -64,7 +64,8 @@ describe('Service: RomanNumbers', function () {
  */
   it('should decomponse non-mapping digits', function () {
     var expose = RomanNumbers.expose();
-/*
+    expose.echoOnly() ;
+
     expect( flattenToString( expose.conversions[0]( 0, 0 ) ) )
         .toBe('');
     expect( flattenToString( expose.conversions[1]( 1, 0 ) ) )
@@ -89,7 +90,6 @@ describe('Service: RomanNumbers', function () {
         .toBe('5-0-3-0');
     expect( flattenToString( expose.conversions[9]( 9, 2 ) ) )
         .toBe('1-2-1-3');
- */
   });
 
 /**
