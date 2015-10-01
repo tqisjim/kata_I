@@ -38,15 +38,15 @@ angular.module('kataApp')
       return convert.apply( [], terms );
   };
   conversions[4] = function ( value, expo ) { 
-      return [ [ 1, expo ], [ 5, expo ] ];
+      return convert( [ 1, expo ], [ 5, expo ] );
   };
   conversions[6] =
   conversions[7] =
   conversions[8] = function ( value, expo ) { 
-      return [ [ 5, expo ], [ value %5, expo ] ];
+      return convert( [ 5, expo ], [ value %5, expo ] );
   };
   conversions[9] = function ( value, expo ) { 
-      return [ [ 1, expo ], [ 1, expo +1 ] ];
+      return convert( [ 1, expo ], [ 1, expo +1 ] );
   };
 
   function symbol ( value, expo ) {

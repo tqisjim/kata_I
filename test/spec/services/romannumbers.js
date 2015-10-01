@@ -64,23 +64,17 @@ describe('Service: RomanNumbers', function () {
  */
   it('should decomponse non-mapping digits', function () {
     var expose = RomanNumbers.expose();
+/*
     expect( flattenToString( expose.conversions[0]( 0, 0 ) ) )
         .toBe('');
     expect( flattenToString( expose.conversions[1]( 1, 0 ) ) )
         .toBe('I');
     expect( flattenToString( expose.conversions[1]( 1, 1 ) ) )
         .toBe('X');
-/*
     expect( flattenToString( expose.conversions[2]( 2, 0 ) ) )
         .toBe('1-0-1-0');
     expect( flattenToString( expose.conversions[3]( 3, 0 ) ) )
         .toBe('1-0-1-0-1-0');
- */
-    expect( flattenToString( expose.conversions[2]( 2, 0 ) ) )
-        .toBe('I-I');
-    expect( flattenToString( expose.conversions[3]( 3, 0 ) ) )
-        .toBe('I-I-I');
-
     expect( flattenToString( expose.conversions[4]( 4, 0 ) ) )
         .toBe('1-0-5-0');
     expect( flattenToString( expose.conversions[5]( 5, 0 ) ) )
@@ -95,6 +89,37 @@ describe('Service: RomanNumbers', function () {
         .toBe('5-0-3-0');
     expect( flattenToString( expose.conversions[9]( 9, 2 ) ) )
         .toBe('1-2-1-3');
+ */
+  });
+
+/**
+ * The convert() method either performs a symbol lookup or recurses.
+ * Ultimately, it returns the Roman representation for a single digit.
+ */
+  it('should convert a digit to its Roman equivalent', function () {
+    var expose = RomanNumbers.expose();
+    expect( flattenToString( expose.conversions[0]( 0, 0 ) ) )
+        .toBe('');
+    expect( flattenToString( expose.conversions[1]( 1, 1 ) ) )
+        .toBe('X');
+    expect( flattenToString( expose.conversions[2]( 2, 0 ) ) )
+        .toBe('I-I');
+    expect( flattenToString( expose.conversions[3]( 3, 0 ) ) )
+        .toBe('I-I-I');
+    expect( flattenToString( expose.conversions[4]( 4, 0 ) ) )
+        .toBe('I-V');
+    expect( flattenToString( expose.conversions[5]( 5, 0 ) ) )
+        .toBe('V');
+    expect( flattenToString( expose.conversions[5]( 5, 2 ) ) )
+        .toBe('D');
+    expect( flattenToString( expose.conversions[6]( 6, 2 ) ) )
+        .toBe('D-C');
+    expect( flattenToString( expose.conversions[7]( 7, 1 ) ) )
+        .toBe('L-X-X');
+    expect( flattenToString( expose.conversions[8]( 8, 0 ) ) )
+        .toBe('V-I-I-I');
+    expect( flattenToString( expose.conversions[9]( 9, 2 ) ) )
+        .toBe('C-M');
   });
 
 });
