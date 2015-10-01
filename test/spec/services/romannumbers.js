@@ -64,7 +64,7 @@ describe('Service: RomanNumbers', function () {
  *
  * The echoOnly() method is used for testing to disable the recursion.
  */
-  it('should decomponse non-mapping digits', function () {
+  it('should decompose non-mapping digits', function () {
     var expose = RomanNumbers.expose();
     expose.echoOnly() ;
 
@@ -95,8 +95,7 @@ describe('Service: RomanNumbers', function () {
   });
 
 /**
- * The convert() method either performs a symbol lookup or recurses.
- * Ultimately, it returns the Roman representation for a single digit.
+ * Test the recursion
  */
   it('should convert a digit to its Roman equivalent', function () {
     var expose = RomanNumbers.expose();
